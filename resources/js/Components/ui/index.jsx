@@ -38,6 +38,7 @@ import InputPassword from "@/Components/ui/forms/InputPassword";
 import InputColor from "@/Components/ui/forms/InputColor";
 import InputGroup from "@/Components/ui/forms/InputGroup";
 import InputLabel from "@/Components/ui/forms/InputLabel";
+import InputError from "@/Components/ui/forms/InputError";
 import Radio from "@/Components/ui/forms/Radio";
 import Range from "@/Components/ui/forms/Range";
 import Select from "@/Components/ui/forms/Select";
@@ -103,6 +104,7 @@ export {
     InputColor,
     InputGroup,
     InputLabel,
+    InputError,
     Radio,
     Range,
     Select,

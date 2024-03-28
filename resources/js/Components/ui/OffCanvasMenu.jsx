@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { List } from "react-bootstrap-icons";
 import { SubmenuAccordion } from "@/Components/ui";
-import Logo from "@/components/navbar/Logo";
+import Logo from "@/Components/navbar/Logo";
 
 export default function OffCanvasMenu(props) {
     // set toggle

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@inertiajs/react";
 import { Menu, Transition } from "@headlessui/react";
 import { EnvelopeOpen, EnvelopeSlash } from "react-bootstrap-icons";
 import { Notif } from "@/Components/ui";

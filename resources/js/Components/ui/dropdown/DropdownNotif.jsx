@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@inertiajs/react";
 import { Menu, Transition } from "@headlessui/react";
 import { Trash, BellSlash } from "react-bootstrap-icons";
 import TimeAgo from "react-timeago";
