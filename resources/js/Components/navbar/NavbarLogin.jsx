@@ -1,12 +1,21 @@
-import React from "react";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
+import { useMemo } from "react";
 import Logo from "@/Components/navbar/Logo";
 
-export default function NavbarLogin(props) {
-    const menu = [
-        { title: "Login", url: route("login") },
-        { title: "Register", url: route("register") },
-    ];
+export default function NavbarLogin() {
+    const {
+        auth: { user },
+    } = usePage().props;
+
+    const menu = useMemo(() => {
+        if (!user) {
+            return [
+                { title: "Login", url: route("login") },
+                { title: "Register", url: route("register") },
+            ];
+        }
+        return [{ title: "Logout", url: route("logout"), method: "post" }];
+    }, [user]);
 
     return (
         <header className="border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-800">
@@ -23,6 +32,7 @@ export default function NavbarLogin(props) {
                                 <Link
                                     className="py-3 px-4 flex hover:text-indigo-500 focus:outline-none"
                                     href={list.url}
+                                    method={list.method}
                                 >
                                     {list.title}
                                 </Link>
