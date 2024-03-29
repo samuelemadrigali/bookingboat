@@ -29,8 +29,10 @@ Route::domain(env('BACKOFFICE_DOMAIN'))->group(function () {
         Route::get('/dashboard', [HomeController::class, 'redirect'])->name('dashboard');
 
         // Agency
-        Route::get('/company/create', [AgencyCompanyController::class, 'create'])->name('agency.company.create');
-        Route::post('/company', [AgencyCompanyController::class, 'store'])->name('agency.company.store');
+        Route::middleware('noCompany')->name('agency.')->group(function () {
+            Route::get('/company/create', [AgencyCompanyController::class, 'create'])->name('company.create');
+            Route::post('/company', [AgencyCompanyController::class, 'store'])->name('company.store');
+        });
 
         Route::middleware('hasCompany')->name('agency.')->group(function () {
             Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
