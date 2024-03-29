@@ -21,6 +21,6 @@ class HomeController extends Controller
             return redirect()->route('agency.company.create');
         }
 
-        return redirect()->route('agency.dashboard');
+        return redirect()->route('agency.dashboard', ['company' => auth()->user()->company->slug]);
     }
 }
