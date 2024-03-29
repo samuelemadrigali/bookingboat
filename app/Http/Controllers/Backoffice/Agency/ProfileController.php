@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backoffice;
+namespace App\Http\Controllers\Backoffice\Agency;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
@@ -38,7 +38,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit');
+        return Redirect::route('agency.profile.edit');
     }
 
     /**

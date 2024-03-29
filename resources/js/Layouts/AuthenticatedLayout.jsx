@@ -60,7 +60,7 @@ export default function Authenticated({ user, header, children }) {
 
                                     <Dropdown.Content>
                                         <Dropdown.Link
-                                            href={route("profile.edit")}
+                                            href={route("agency.profile.edit")}
                                         >
                                             Profile
                                         </Dropdown.Link>
