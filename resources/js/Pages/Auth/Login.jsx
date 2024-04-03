@@ -10,8 +10,10 @@ import {
     InputError,
 } from "@/Components/ui";
 import { Head, Link, useForm } from "@inertiajs/react";
+import useLocalization from "@/hooks/useLocalization";
 
 export default function Login() {
+    const { t } = useLocalization();
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
         password: "",
@@ -32,9 +34,9 @@ export default function Login() {
 
     return (
         <AuthLayout>
-            <Head title="Log in" />
+            <Head title={t("form.login")} />
             <Heading variant="h3" className="text-center">
-                Login
+                {t("form.login")}
             </Heading>
             <hr className="block w-12 h-0.5 mx-auto my-5 bg-gray-700 border-gray-700" />
 
@@ -43,24 +45,26 @@ export default function Login() {
                     <InputLabel
                         type="email"
                         name="email"
-                        label="Email"
+                        label={t("form.fields.email")}
                         autoComplete="username"
                         isFocused={true}
                         value={data.email}
                         onChange={(e) => setData("email", e.target.value)}
+                        required
                     />
                     <InputError message={errors.email} />
                 </div>
                 <div>
                     <div className="flex flex-row justify-between items-center mb-2">
                         <label htmlFor="inputpass" className="inline-block">
-                            Password
+                            {t("form.fields.password")}{" "}
+                            <span className="text-pink-500"> *</span>
                         </label>
                         <Link
                             href={route("password.request")}
                             className="text-indigo-500"
                         >
-                            Forgot password?
+                            {t("form.forgot_password")}
                         </Link>
                     </div>
                     <InputPassword
@@ -69,32 +73,33 @@ export default function Login() {
                         value={data.password}
                         autoComplete="current-password"
                         onChange={(e) => setData("password", e.target.value)}
+                        required
                     />
                     <InputError message={errors.password} />
                 </div>
                 <Checkbox
                     name="remember"
                     checked={data.remember}
-                    label="Remember me"
+                    label={t("form.fields.remember_me")}
                     onChange={(e) => setData("remember", e.target.checked)}
                 />
 
                 <div className="grid">
                     <Button type="submit" disabled={processing}>
                         <BoxArrowInRight className="inline-block w-4 h-4 ltr:mr-2 rtl:ml-2" />
-                        Login
+                        {t("form.login")}
                     </Button>
                 </div>
             </form>
 
             <div className="mt-4">
                 <p className="text-center mb-4">
-                    <span>Dont have an account? </span>
+                    <span>{t("form.do_not_have_account")} </span>
                     <Link
                         href={route("register")}
                         className="hover:text-indigo-500"
                     >
-                        Register
+                        {t("form.register")}
                     </Link>
                 </p>
             </div>

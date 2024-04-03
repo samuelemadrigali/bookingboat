@@ -9,8 +9,10 @@ import {
     InputError,
 } from "@/Components/ui";
 import { Head, Link, useForm } from "@inertiajs/react";
+import useLocalization from "@/hooks/useLocalization";
 
 export default function Register() {
+    const { t } = useLocalization();
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         email: "",
@@ -32,9 +34,9 @@ export default function Register() {
 
     return (
         <AuthLayout>
-            <Head title="Register" />
+            <Head title={t("form.join_now")} />
             <Heading variant="h3" className="text-center">
-                Join Now
+                {t("form.join_now")}
             </Heading>
             <hr className="block w-12 h-0.5 mx-auto my-5 bg-gray-700 border-gray-700" />
 
@@ -43,7 +45,7 @@ export default function Register() {
                     <InputLabel
                         name="name"
                         value={data.name}
-                        label="Full Name"
+                        label={t("form.fields.name")}
                         autoComplete="name"
                         isFocused={true}
                         onChange={(e) => setData("name", e.target.value)}
@@ -57,7 +59,7 @@ export default function Register() {
                     <InputLabel
                         type="email"
                         name="email"
-                        label="Email"
+                        label={t("form.fields.email")}
                         value={data.email}
                         autoComplete="username"
                         onChange={(e) => setData("email", e.target.value)}
@@ -71,7 +73,7 @@ export default function Register() {
                     <InputPassword
                         type="password"
                         name="password"
-                        label="Password"
+                        label={t("form.fields.password")}
                         value={data.password}
                         autoComplete="new-password"
                         onChange={(e) => setData("password", e.target.value)}
@@ -84,7 +86,7 @@ export default function Register() {
                     <InputPassword
                         type="password"
                         name="password_confirmation"
-                        label="Password Confirmation"
+                        label={t("form.fields.password_confirmation")}
                         value={data.password_confirmation}
                         autoComplete="new-password"
                         onChange={(e) =>
@@ -98,18 +100,18 @@ export default function Register() {
                 <div className="grid">
                     <Button type="submit">
                         <BoxArrowInRight className="inline-block w-4 h-4 ltr:mr-2 rtl:ml-2" />
-                        Register
+                        {t("form.register")}
                     </Button>
                 </div>
             </form>
             <div className="mt-4">
                 <p className="text-center mb-4">
-                    <span>Already have an account? </span>
+                    <span>{t("form.already_have_account")} </span>
                     <Link
                         href={route("login")}
                         className="hover:text-indigo-500"
                     >
-                        Login
+                        {t("form.login")}
                     </Link>
                 </p>
             </div>

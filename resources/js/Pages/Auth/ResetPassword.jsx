@@ -9,8 +9,10 @@ import {
     InputError,
 } from "@/Components/ui";
 import { Head, useForm } from "@inertiajs/react";
+import useLocalization from "@/hooks/useLocalization";
 
 export default function ResetPassword({ token, email }) {
+    const { t } = useLocalization();
     const { data, setData, post, processing, errors, reset } = useForm({
         token: token,
         email: email,
@@ -32,9 +34,9 @@ export default function ResetPassword({ token, email }) {
 
     return (
         <AuthLayout>
-            <Head title="Reset Password" />
+            <Head title={t("form.reset_password")} />
             <Heading variant="h3" className="text-center">
-                Change Password
+                {t("form.change_password")}
             </Heading>
             <hr className="block w-12 h-0.5 mx-auto my-5 bg-gray-700 border-gray-700" />
 
@@ -43,7 +45,7 @@ export default function ResetPassword({ token, email }) {
                     <InputLabel
                         type="email"
                         name="email"
-                        label="Email"
+                        label={t("form.fields.email")}
                         value={data.email}
                         autoComplete="username"
                         onChange={(e) => setData("email", e.target.value)}
@@ -57,7 +59,7 @@ export default function ResetPassword({ token, email }) {
                     <InputPassword
                         type="password"
                         name="password"
-                        label="Password"
+                        label={t("form.fields.password")}
                         value={data.password}
                         autoComplete="new-password"
                         onChange={(e) => setData("password", e.target.value)}
@@ -70,7 +72,7 @@ export default function ResetPassword({ token, email }) {
                     <InputPassword
                         type="password"
                         name="password_confirmation"
-                        label="Password Confirmation"
+                        label={t("form.fields.password_confirmation")}
                         value={data.password_confirmation}
                         autoComplete="new-password"
                         onChange={(e) =>
@@ -84,7 +86,7 @@ export default function ResetPassword({ token, email }) {
                 <div className="grid">
                     <Button type="submit">
                         <BoxArrowInRight className="inline-block w-4 h-4 ltr:mr-2 rtl:ml-2" />
-                        Reset Password
+                        {t("form.reset_password")}
                     </Button>
                 </div>
             </form>

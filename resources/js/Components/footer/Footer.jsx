@@ -1,13 +1,23 @@
-import React from "react";
+import { Link } from "@inertiajs/react";
+import useLocalization from "@/hooks/useLocalization";
+import { Translate } from "react-bootstrap-icons";
 
-export default function Footer(props) {
+export default function Footer() {
+    const { locale } = useLocalization();
+
     // footer menu
     const menu = [
         { title: "Support", url: "/" },
         { title: "Help Center", url: "/" },
         { title: "Privacy", url: "/" },
-        { title: "TOS", url: "/" },
     ];
+
+    menu.push({
+        title: locale === "en" ? "Italiano" : "English",
+        url: route("switch-locale", { locale: locale === "en" ? "it" : "en" }),
+        icon: <Translate />,
+    });
+
     // footer copyright
     const footer_copyright = "Booking Boat tours | All right reserved";
 
@@ -22,12 +32,14 @@ export default function Footer(props) {
                                     key={index}
                                     className="inline-block ltr:mr-3 rtl:ml-3"
                                 >
-                                    <a
-                                        className="hover:text-indigo-500"
+                                    <Link
+                                        className="hover:text-indigo-500 flex gap-x-2 items-baseline"
                                         href={list.url}
+                                        method={list.method}
                                     >
+                                        {list.icon}
                                         {list.title}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

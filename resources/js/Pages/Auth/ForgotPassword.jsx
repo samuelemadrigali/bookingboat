@@ -8,8 +8,10 @@ import {
     Alert,
 } from "@/Components/ui";
 import { Head, useForm, Link } from "@inertiajs/react";
+import useLocalization from "@/hooks/useLocalization";
 
 export default function ForgotPassword({ status }) {
+    const { t } = useLocalization();
     const { data, setData, post, processing, errors } = useForm({
         email: "",
     });
@@ -22,17 +24,13 @@ export default function ForgotPassword({ status }) {
 
     return (
         <AuthLayout>
-            <Head title="Forgot Password" />
+            <Head title={t("form.forgot_password")} />
             <Heading variant="h3" className="text-center">
-                Forgot Password
+                {t("form.forgot_password")}
             </Heading>
             <hr className="block w-12 h-0.5 mx-auto my-5 bg-gray-700 border-gray-700" />
 
-            <p className="mb-4">
-                Forgot your password? No problem. Just let us know your email
-                address and we will email you a password reset link that will
-                allow you to choose a new one.
-            </p>
+            <p className="mb-4">{t("form.forgot_password_text")}</p>
 
             {status && (
                 <Alert color="success" className="text-sm">
@@ -46,9 +44,10 @@ export default function ForgotPassword({ status }) {
                     type="email"
                     name="email"
                     value={data.email}
-                    label="Email"
+                    label={t("form.fields.email")}
                     isFocused={true}
                     onChange={(e) => setData("email", e.target.value)}
+                    required
                 />
                 <InputError message={errors.email} className="mt-2" />
 
@@ -58,21 +57,21 @@ export default function ForgotPassword({ status }) {
                             className="inline-block w-4 h-4 ltr:mr-2 rtl:ml-2"
                             disabled={processing}
                         />{" "}
-                        Email Password Reset Link
+                        {t("form.send_reset_link")}
                     </Button>
                 </div>
             </form>
             <div className="mt-4">
                 <p className="text-center mb-3">
-                    <span>Or</span>
+                    <span>{t("form.or")}</span>
                 </p>
                 <p className="text-center mb-4">
-                    <span>Dont have an account? </span>
+                    <span>{t("form.do_not_have_account")} </span>
                     <Link
                         href={route("register")}
                         className="hover:text-indigo-500"
                     >
-                        Register
+                        {t("form.register")}
                     </Link>
                 </p>
             </div>

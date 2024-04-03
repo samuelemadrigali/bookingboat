@@ -1,12 +1,14 @@
 import { useEffect } from "react";
-import GuestLayout from "@/Layouts/GuestLayout";
+import AuthLayout from "@/Layouts/AuthLayout";
 import InputError from "@/Components/ui/forms/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, useForm } from "@inertiajs/react";
+import useLocalization from "@/hooks/useLocalization";
 
 export default function ConfirmPassword() {
+    const { t } = useLocalization();
     const { data, setData, post, processing, errors, reset } = useForm({
         password: "",
     });
@@ -24,17 +26,19 @@ export default function ConfirmPassword() {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Confirm Password" />
+        <AuthLayout>
+            <Head title={t("form.fields.password_confirmation")} />
 
             <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
-                This is a secure area of the application. Please confirm your
-                password before continuing.
+                {t("form.secure_area")}
             </div>
 
             <form onSubmit={submit}>
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel
+                        htmlFor="password"
+                        value={t("form.fields.password")}
+                    />
 
                     <TextInput
                         id="password"
@@ -44,6 +48,7 @@ export default function ConfirmPassword() {
                         className="mt-1 block w-full"
                         isFocused={true}
                         onChange={(e) => setData("password", e.target.value)}
+                        required
                     />
 
                     <InputError message={errors.password} className="mt-2" />
@@ -51,10 +56,10 @@ export default function ConfirmPassword() {
 
                 <div className="flex items-center justify-end mt-4">
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Confirm
+                        {t("form.confirm")}
                     </PrimaryButton>
                 </div>
             </form>
-        </GuestLayout>
+        </AuthLayout>
     );
 }
