@@ -10,8 +10,10 @@ import {
     InputError,
     Button,
 } from "@/Components/ui";
+import useLocalization from "@/hooks/useLocalization";
 
-export default function CreateCompany({ auth }) {
+export default function CreateCompany() {
+    const { t } = useLocalization();
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         country: "",
@@ -35,7 +37,7 @@ export default function CreateCompany({ auth }) {
 
     return (
         <>
-            <Head title="Company Create" />
+            <Head title={t("company.create")} />
             <NavbarLogin />
             <main className="grow bg-gray-100 dark:bg-gray-900 dark:bg-opacity-40 flex flex-col justify-center">
                 <div className="relative py-12">
@@ -43,7 +45,7 @@ export default function CreateCompany({ auth }) {
                         <div className="flex flex-wrap flex-row justify-center">
                             <div className="w-full">
                                 <Heading variant="h3" className="mb-6">
-                                    Create Company
+                                    {t("company.create")}
                                 </Heading>
                                 <Card className="relative p-6">
                                     <form
@@ -52,13 +54,15 @@ export default function CreateCompany({ auth }) {
                                         className="space-y-4"
                                     >
                                         <p className="text-xl font-bold border-b pb-2">
-                                            Company Data
+                                            {t("company.data")}
                                         </p>
                                         <Row>
                                             <Column spansSm={6}>
                                                 <InputLabel
                                                     id="name"
-                                                    label="Name"
+                                                    label={t(
+                                                        "company.form.name"
+                                                    )}
                                                     name="name"
                                                     value={data.name}
                                                     onChange={(e) =>
@@ -67,6 +71,7 @@ export default function CreateCompany({ auth }) {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                                 <InputError
                                                     message={errors.name}
@@ -75,7 +80,9 @@ export default function CreateCompany({ auth }) {
                                             <Column spansSm={6}>
                                                 <InputLabel
                                                     id="country"
-                                                    label="Country"
+                                                    label={t(
+                                                        "company.form.country"
+                                                    )}
                                                     name="country"
                                                     value={data.country}
                                                     onChange={(e) =>
@@ -84,6 +91,7 @@ export default function CreateCompany({ auth }) {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                                 <InputError
                                                     message={errors.country}
@@ -92,7 +100,9 @@ export default function CreateCompany({ auth }) {
                                             <Column spansSm={6}>
                                                 <InputLabel
                                                     id="city"
-                                                    label="City"
+                                                    label={t(
+                                                        "company.form.city"
+                                                    )}
                                                     name="city"
                                                     value={data.city}
                                                     onChange={(e) =>
@@ -101,6 +111,7 @@ export default function CreateCompany({ auth }) {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                                 <InputError
                                                     message={errors.city}
@@ -109,7 +120,9 @@ export default function CreateCompany({ auth }) {
                                             <Column spansSm={6}>
                                                 <InputLabel
                                                     id="province"
-                                                    label="Province"
+                                                    label={t(
+                                                        "company.form.province"
+                                                    )}
                                                     name="province"
                                                     value={data.province}
                                                     onChange={(e) =>
@@ -118,6 +131,7 @@ export default function CreateCompany({ auth }) {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                                 <InputError
                                                     message={errors.province}
@@ -126,7 +140,9 @@ export default function CreateCompany({ auth }) {
                                             <Column spansSm={6}>
                                                 <InputLabel
                                                     id="address"
-                                                    label="Address"
+                                                    label={t(
+                                                        "company.form.address"
+                                                    )}
                                                     name="address"
                                                     value={data.address}
                                                     onChange={(e) =>
@@ -135,6 +151,7 @@ export default function CreateCompany({ auth }) {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                                 <InputError
                                                     message={errors.address}
@@ -143,7 +160,9 @@ export default function CreateCompany({ auth }) {
                                             <Column spansSm={6}>
                                                 <InputLabel
                                                     id="zip"
-                                                    label="Zip"
+                                                    label={t(
+                                                        "company.form.zip"
+                                                    )}
                                                     name="zip"
                                                     value={data.zip}
                                                     onChange={(e) =>
@@ -152,6 +171,7 @@ export default function CreateCompany({ auth }) {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                                 <InputError
                                                     message={errors.zip}
@@ -160,7 +180,9 @@ export default function CreateCompany({ auth }) {
                                             <Column spansSm={6}>
                                                 <InputLabel
                                                     id="phone"
-                                                    label="Phone"
+                                                    label={t(
+                                                        "company.form.phone"
+                                                    )}
                                                     name="phone"
                                                     value={data.phone}
                                                     onChange={(e) =>
@@ -169,6 +191,7 @@ export default function CreateCompany({ auth }) {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                                 <InputError
                                                     message={errors.phone}
@@ -177,7 +200,9 @@ export default function CreateCompany({ auth }) {
                                             <Column spansSm={6}>
                                                 <InputLabel
                                                     id="website"
-                                                    label="Website"
+                                                    label={t(
+                                                        "company.form.website"
+                                                    )}
                                                     name="website"
                                                     value={data.website}
                                                     onChange={(e) =>
@@ -186,6 +211,7 @@ export default function CreateCompany({ auth }) {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                                 <InputError
                                                     message={errors.website}
@@ -193,7 +219,7 @@ export default function CreateCompany({ auth }) {
                                             </Column>
                                         </Row>
                                         <p className="text-xl font-bold border-b pb-2">
-                                            Billing Data
+                                            {t("company.billing_data")}
                                         </p>
                                         <Row>
                                             <Column spansSm={6}>
@@ -208,6 +234,7 @@ export default function CreateCompany({ auth }) {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                                 <InputError
                                                     message={
@@ -218,7 +245,9 @@ export default function CreateCompany({ auth }) {
                                             <Column spansSm={6}>
                                                 <InputLabel
                                                     id="vat"
-                                                    label="VAT"
+                                                    label={t(
+                                                        "company.form.vat"
+                                                    )}
                                                     name="vat"
                                                     value={data.vat}
                                                     onChange={(e) =>
@@ -227,6 +256,7 @@ export default function CreateCompany({ auth }) {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                                 <InputError
                                                     message={errors.vat}
@@ -235,7 +265,9 @@ export default function CreateCompany({ auth }) {
                                             <Column spansSm={6}>
                                                 <InputLabel
                                                     id="pec"
-                                                    label="PEC"
+                                                    label={t(
+                                                        "company.form.pec"
+                                                    )}
                                                     name="pec"
                                                     value={data.pec}
                                                     onChange={(e) =>
@@ -252,7 +284,9 @@ export default function CreateCompany({ auth }) {
                                             <Column spansSm={6}>
                                                 <InputLabel
                                                     id="sdi_code"
-                                                    label="SDI Code"
+                                                    label={t(
+                                                        "company.form.sdi"
+                                                    )}
                                                     name="sdi_code"
                                                     value={data.sdi_code}
                                                     onChange={(e) =>
@@ -272,7 +306,7 @@ export default function CreateCompany({ auth }) {
                                             type="submit"
                                             processing={processing}
                                         >
-                                            Create
+                                            {t("form.create")}
                                         </Button>
                                     </form>
                                 </Card>

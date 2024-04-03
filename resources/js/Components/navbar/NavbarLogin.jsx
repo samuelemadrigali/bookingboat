@@ -1,8 +1,11 @@
 import { Link, usePage } from "@inertiajs/react";
 import { useMemo } from "react";
 import Logo from "@/Components/navbar/Logo";
+import useLocalization from "@/hooks/useLocalization";
 
 export default function NavbarLogin() {
+    const { t } = useLocalization();
+
     const {
         auth: { user },
     } = usePage().props;
@@ -10,8 +13,8 @@ export default function NavbarLogin() {
     const menu = useMemo(() => {
         if (!user) {
             return [
-                { title: "Login", url: route("login") },
-                { title: "Register", url: route("register") },
+                { title: t("form.login"), url: route("login") },
+                { title: t("form.register"), url: route("register") },
             ];
         }
         return [{ title: "Logout", url: route("logout"), method: "post" }];
