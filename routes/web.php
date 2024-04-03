@@ -5,6 +5,7 @@ use App\Http\Controllers\Backoffice\Agency\CompanyController as AgencyCompanyCon
 use App\Http\Controllers\Backoffice\Agency\HomeController as AgencyHomeController;
 use App\Http\Controllers\Backoffice\Agency\ProfileController;
 use App\Http\Controllers\Backoffice\HomeController;
+use App\Http\Controllers\Backoffice\LocalizationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,6 +16,7 @@ Route::domain(env('BACKOFFICE_DOMAIN'))->group(function () {
     require __DIR__.'/auth.php';
 
     // Guest
+    Route::get('/switch-locale/{locale}', [LocalizationController::class, 'switchLocale'])->name('switch-locale');
     Route::get('/', function () {
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
