@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "@inertiajs/react";
 import { Menu, Transition } from "@headlessui/react";
-import { Trash, BellSlash } from "react-bootstrap-icons";
+import { Trash, BellSlash, Bell } from "react-bootstrap-icons";
 import TimeAgo from "react-timeago";
 import { Notif } from "@/Components/ui";
+import useLocalization from "@/hooks/useLocalization";
 
 export default function DropdownNotif(props) {
+    const { t } = useLocalization();
     // Data notif
     const allnotif = props.data;
-    // Head & footer dropdown text and link
-    const text_notif = props.data_text;
 
     // Sort notif
     const datanotif = [...allnotif].sort((a, b) => b.id - a.id);
@@ -32,7 +32,10 @@ export default function DropdownNotif(props) {
                 id="user-menu-button"
             >
                 <div className="relative inline-block">
-                    <Notif count={notifcount} icon={text_notif.notificon} />
+                    <Notif
+                        count={notifcount}
+                        icon={<Bell className="w-6 h-6" />}
+                    />
                 </div>
             </Menu.Button>
             <Transition
@@ -50,12 +53,14 @@ export default function DropdownNotif(props) {
                     {/* Head notification */}
                     <div className="p-3 font-normal border-b border-gray-200 dark:border-gray-700">
                         <div className="relative">
-                            <div className="font-bold">{text_notif.title}</div>
+                            <div className="font-bold">
+                                {t("notification.dropdown.title")}
+                            </div>
                             <div className="absolute top-0 ltr:right-0 rtl:left-0">
                                 <button
                                     onClick={resetNotif}
                                     className="inline-block ltr:mr-2 rtl:ml-2"
-                                    title="Clear all notification"
+                                    title={t("notification.dropdown.clear_all")}
                                 >
                                     <Trash className="w-4 h-4" />
                                 </button>
@@ -112,7 +117,9 @@ export default function DropdownNotif(props) {
                                     </div>
                                     <div className="flex-shrink max-w-full px-2 w-3/4">
                                         <div className="text-gray-600 text-sm mt-1">
-                                            {text_notif.noNotif}
+                                            {t(
+                                                "notification.dropdown.no_notif"
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -122,11 +129,8 @@ export default function DropdownNotif(props) {
 
                     {/* footer notification */}
                     <div className="p-3 text-center font-normal">
-                        <Link
-                            to={text_notif.footer_url}
-                            className="hover:underline"
-                        >
-                            {text_notif.footer_text}
+                        <Link href="/" className="hover:underline">
+                            {t("notification.dropdown.see_all")}
                         </Link>
                     </div>
                 </Menu.Items>

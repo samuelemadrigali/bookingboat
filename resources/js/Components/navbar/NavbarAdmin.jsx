@@ -1,25 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-    Envelope,
-    PencilSquare,
     Calendar,
     Gear,
     ChatDots,
     HandThumbsUp,
-    QuestionCircle,
-    Translate,
-    BoxArrowRight,
-    Bell,
     List,
     FilterLeft,
 } from "react-bootstrap-icons";
-import {
-    SearchForm,
-    DropdownUser,
-    DropdownNotif,
-    DropdownMessage,
-    Switch,
-} from "@/Components/reactdash-ui";
+import { DropdownUser, DropdownNotif, Switch } from "@/Components/ui";
 
 export default function NavbarAdmin(props) {
     // set toggle dark
@@ -28,65 +16,6 @@ export default function NavbarAdmin(props) {
     isDark === true
         ? document.documentElement.classList.add("dark")
         : document.documentElement.classList.remove("dark");
-
-    // Dropdown text Messages
-    const text_msg = {
-        title: "Messages",
-        noMsg: "No Messages Yet",
-        notificon: <Envelope className="w-6 h-6" />,
-        new_icon: <PencilSquare />,
-        new_url: "/",
-        footer_text: "See all Mesaages",
-        footer_url: "/",
-    };
-    // Data messages
-    const data_dropdown_message = [
-        {
-            id: 1,
-            name: "Daniel Zuric",
-            msg: "What do you think about this project?",
-            time: "2022-06-09T23:50:21.817Z",
-            img: "/img/avatar/avatar2.png",
-            url: "/",
-            read: true,
-        },
-        {
-            id: 2,
-            name: "Carlos Garcia",
-            msg: "Hello, how are you friends?",
-            time: "2022-07-09T23:50:21.817Z",
-            img: "/img/avatar/avatar3.png",
-            url: "/",
-            read: true,
-        },
-        {
-            id: 3,
-            name: "Fernando",
-            msg: "Thank you for your help today.",
-            time: "2022-07-09T23:50:21.817Z",
-            img: "/img/avatar/avatar4.png",
-            url: "/",
-            read: false,
-        },
-        {
-            id: 4,
-            name: "Luis Diaz",
-            msg: "Do you have time? I want to call you.",
-            time: "2022-08-09T23:50:21.817Z",
-            img: "/img/avatar/avatar5.png",
-            url: "/",
-            read: false,
-        },
-        {
-            id: 5,
-            name: "Ronald Zonin",
-            msg: "How are you today?",
-            time: "2022-09-09T23:50:21.817Z",
-            img: "/img/avatar/avatar6.png",
-            url: "/",
-            read: false,
-        },
-    ];
 
     // Data notification
     const data_dropdown_notif = [
@@ -136,28 +65,7 @@ export default function NavbarAdmin(props) {
             read: false,
         },
     ];
-    // Head & footer text notification
-    const text_notif = {
-        title: "Notification",
-        noNotif: "No Notifications Yet",
-        notificon: <Bell className="w-6 h-6" />,
-        footer_text: "See all Notification",
-        footer_url: "/",
-    };
 
-    // Data admin ( DropdownUser )
-    const data_user = {
-        name: "Ari budin",
-        img: "/img/avatar/avatar.png",
-        info: "Professional Front end developer",
-    };
-    // list dropdown user
-    const data_dropdown_user = [
-        { title: "Setting Privacy", url: "/", icon: <Gear /> },
-        { title: "Help Support", url: "/", icon: <QuestionCircle /> },
-        { title: "Change Language", url: "/", icon: <Translate /> },
-        { title: "Sign Out", url: "/", icon: <BoxArrowRight /> },
-    ];
     const models = {
         compact: "navtop-compact",
         default: "navtop-area",
@@ -181,9 +89,6 @@ export default function NavbarAdmin(props) {
                 <FilterLeft className="sidenav-block h-8 w-8" />
             </button>
 
-            {/* Search Form */}
-            <SearchForm />
-
             {/* top menu */}
             <ul className="flex ltr:ml-auto rtl:mr-auto mt-2">
                 <li className="relative pr-4">
@@ -196,19 +101,10 @@ export default function NavbarAdmin(props) {
                     />
                 </li>
                 <li className="relative">
-                    <DropdownMessage
-                        data={data_dropdown_message}
-                        data_text={text_msg}
-                    />
+                    <DropdownNotif data={data_dropdown_notif} />
                 </li>
                 <li className="relative">
-                    <DropdownNotif
-                        data={data_dropdown_notif}
-                        data_text={text_notif}
-                    />
-                </li>
-                <li className="relative">
-                    <DropdownUser data={data_dropdown_user} user={data_user} />
+                    <DropdownUser />
                 </li>
             </ul>
         </nav>

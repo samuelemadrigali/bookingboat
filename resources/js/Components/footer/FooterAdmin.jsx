@@ -1,16 +1,22 @@
-import React from "react";
 import { Link } from "@inertiajs/react";
+import useLocalization from "@/hooks/useLocalization";
+import { Translate } from "react-bootstrap-icons";
 
 export default function FooterAdmin() {
-    // Data footer menu (props.data)
+    const { locale } = useLocalization();
+
     const footeritems = [
         { title: "Support", url: "/" },
         { title: "Help Center", url: "/" },
         { title: "Privacy", url: "/" },
-        { title: "Terms of Service", url: "/" },
     ];
-    // copyright text (props.text)
-    const copyright = "Reactdash | All right reserved";
+    footeritems.push({
+        title: locale === "en" ? "Italiano" : "English",
+        url: route("switch-locale", { locale: locale === "en" ? "it" : "en" }),
+        icon: <Translate />,
+    });
+
+    const footer_copyright = "Booking Boat tours | All right reserved";
 
     return (
         <footer className="absolute left-0 right-0 bottom-0 bg-white dark:bg-gray-800 p-6 shadow-sm">
@@ -34,7 +40,7 @@ export default function FooterAdmin() {
                         </ul>
                     </div>
                     <div className="flex-shrink max-w-full px-4 w-full lg:w-1/2 text-center lg:ltr:text-right lg:rtl:text-left">
-                        <p className="mb-0 mt-3 lg:mt-0">{copyright}</p>
+                        <p className="mb-0 mt-3 lg:mt-0">{footer_copyright}</p>
                     </div>
                 </div>
             </div>
