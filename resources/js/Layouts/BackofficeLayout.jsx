@@ -1,10 +1,11 @@
+import { Head } from "@inertiajs/react";
 import { useState } from "react";
 // components
 import Sidebar from "@/Components/sidebar/Sidebar";
 import NavbarAdmin from "@/Components/navbar/NavbarAdmin";
 import FooterAdmin from "@/Components/footer/FooterAdmin";
 
-export default function BackofficeLayout({ children }) {
+export default function BackofficeLayout({ title, children }) {
     // set toggle
     const [isToggle, setToggle] = useState(false);
     // close sidebar menu if screen < 768
@@ -24,6 +25,7 @@ export default function BackofficeLayout({ children }) {
                 isToggle ? "show" : ""
             }`}
         >
+            <Head title={title} />
             {/* sidebar area */}
             <Sidebar closeMobile={closeMobile} />
 
@@ -34,7 +36,10 @@ export default function BackofficeLayout({ children }) {
 
                 {/* main */}
                 <main className="relative pt-20 pb-32 sm:pb-24 lg:pb-20 -mt-2">
-                    <div className="mx-auto py-2 sm:px-2">{children}</div>
+                    <div className="mx-auto py-2 px-6">
+                        <h1 className="text-xl font-bold mt-3 mb-5">{title}</h1>
+                        {children}
+                    </div>
                 </main>
 
                 {/* footer */}

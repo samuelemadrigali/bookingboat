@@ -33,7 +33,7 @@ export default function SubmenuAccordion({ closeMobile, ...props }) {
 
                 // active dropdown
                 const getNavLinkClass = (path) => {
-                    return url === path ? isActive : "";
+                    return path.includes(url) ? isActive : "";
                 };
 
                 return (
@@ -96,7 +96,9 @@ export default function SubmenuAccordion({ closeMobile, ...props }) {
                                                     onClick={closeMobile}
                                                     href={submenuitem.url}
                                                     className={
-                                                        submenuitem.url === url
+                                                        submenuitem.url.includes(
+                                                            url
+                                                        )
                                                             ? "text-indigo-600 block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300"
                                                             : "block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300"
                                                     }
@@ -114,7 +116,7 @@ export default function SubmenuAccordion({ closeMobile, ...props }) {
                                     onClick={closeMobile}
                                     href={menuitem.url}
                                     className={
-                                        menuitem.url === url
+                                        menuitem.url.includes(url)
                                             ? "text-indigo-600 block py-2.5 px-6 hover:text-indigo-500 dark:hover:text-gray-300"
                                             : "block py-2.5 px-6 hover:text-indigo-500 dark:hover:text-gray-300"
                                     }

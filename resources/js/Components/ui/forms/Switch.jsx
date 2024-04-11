@@ -4,7 +4,7 @@ export default function Switch({ checked, ...props }) {
     const defaultChecked = checked ? checked : false;
     const [isChecked, setIsChecked] = useState(defaultChecked);
     const onChange = props.onChange;
-    const onChecked = checked ? checked : isChecked;
+    const onChecked = typeof checked === "undefined" ? isChecked : checked;
     const addClass = props.className ? `${props.className} ` : "";
     const margin_bottom = props.label ? "inline-block mb-1" : "mb-1";
 

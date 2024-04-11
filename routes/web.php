@@ -2,13 +2,14 @@
 
 use App\Http\Controllers\Backoffice\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Backoffice\Agency\CompanyController as AgencyCompanyController;
+use App\Http\Controllers\Backoffice\Agency\FleetController;
 use App\Http\Controllers\Backoffice\Agency\HomeController as AgencyHomeController;
 use App\Http\Controllers\Backoffice\Agency\ProfileController;
 use App\Http\Controllers\Backoffice\HomeController;
 use App\Http\Controllers\Backoffice\LocalizationController;
 use Illuminate\Support\Facades\Route;
 
-Route::domain(env('BACKOFFICE_DOMAIN'))->group(function () {
+Route::domain(env('VITE_BACKOFFICE_DOMAIN'))->group(function () {
 
     // Auth
     require __DIR__.'/auth.php';
@@ -33,6 +34,14 @@ Route::domain(env('BACKOFFICE_DOMAIN'))->group(function () {
 
             Route::prefix('{company}')->group(function () {
                 Route::get('/', [AgencyHomeController::class, 'index'])->name('dashboard');
+
+                // Fleet
+                Route::get('/fleet', [FleetController::class, 'index'])->name('fleet.index');
+                Route::get('/fleet/create', [FleetController::class, 'create'])->name('fleet.create');
+                Route::post('/fleet', [FleetController::class, 'store'])->name('fleet.store');
+                Route::get('/fleet/{fleet}/edit', [FleetController::class, 'edit'])->name('fleet.edit');
+                Route::post('/fleet/{fleet}', [FleetController::class, 'update'])->name('fleet.update');
+                Route::delete('/fleet/{fleet}', [FleetController::class, 'destroy'])->name('fleet.destroy');
             });
         });
 
@@ -48,5 +57,5 @@ Route::domain(env('BACKOFFICE_DOMAIN'))->group(function () {
 
 });
 
-Route::domain(env('SHOP_DOMAIN'))->group(function () {
+Route::domain(env('VITE_SHOP_DOMAIN'))->group(function () {
 });

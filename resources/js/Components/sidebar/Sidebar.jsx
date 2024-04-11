@@ -1,15 +1,26 @@
-import { HouseDoor } from "react-bootstrap-icons";
+import { HouseDoor, PSquare } from "react-bootstrap-icons";
 import { SubmenuAccordion } from "@/Components/ui";
 import Logo from "@/Components/navbar/Logo";
+import useLocalization from "@/hooks/useLocalization";
+import { usePage } from "@inertiajs/react";
 
 export default function Sidebar({ closeMobile, ...props }) {
-    // Data sidebar menu (props.data)
+    const { company } = usePage().props;
+
+    const { t } = useLocalization();
+
     const sideitems = [
         {
             id: 1,
-            title: "Dashboards",
-            url: "/dashboard/",
+            title: t("dashboard"),
+            url: route("agency.dashboard", company.slug),
             icon: <HouseDoor />,
+        },
+        {
+            id: 2,
+            title: t("fleet"),
+            url: route("agency.fleet.index", company.slug),
+            icon: <PSquare />,
         },
     ];
     const models = {
