@@ -5,11 +5,13 @@ import {
     InputLabel,
     InputError,
 } from "@/Components/ui";
+import Select from "react-select";
 
 const inputTypes = {
     textarea: Textarea,
     uploader: Uploader,
     switch: Switch,
+    select: Select,
 };
 
 export default function FormField({ setData, error, value, ...props }) {
@@ -43,6 +45,21 @@ export default function FormField({ setData, error, value, ...props }) {
                     uploadedImage={value}
                     {...props}
                 />
+                <InputError message={error} />
+            </>
+        );
+    }
+
+    if (props.type === "select") {
+        function handleChange(selected) {
+            setData(
+                props.name,
+                selected.map((item) => item.value)
+            );
+        }
+        return (
+            <>
+                <FieldComponent onChange={handleChange} {...props} />
                 <InputError message={error} />
             </>
         );

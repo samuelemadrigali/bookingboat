@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Fleet extends Model
+class Tour extends Model
 {
     use HasFactory;
 
@@ -16,19 +16,19 @@ class Fleet extends Model
      *
      * @var array<int, string>
      */
-    protected $guarded = [];
+    protected $guarded = ['fleets'];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'status' => 'boolean',
-        ];
-    }
+    protected $casts = [
+        'itinerary' => 'array',
+        'status' => 'boolean',
+        'start_time' => 'datetime:H:i',
+        'end_time' => 'datetime:H:i',
+    ];
 
     /**
      * Get the image attribute.
@@ -39,7 +39,7 @@ class Fleet extends Model
     }
 
     /**
-     * Get the company that owns the fleet.
+     * Get the company that owns the tour.
      */
     public function company(): BelongsTo
     {
@@ -47,10 +47,10 @@ class Fleet extends Model
     }
 
     /**
-     * Get the tours that belong to the fleet.
+     * Get the fleets that belong to the tour.
      */
-    public function tours(): BelongsToMany
+    public function fleets(): BelongsToMany
     {
-        return $this->belongsToMany(Tour::class);
+        return $this->belongsToMany(Fleet::class);
     }
 }

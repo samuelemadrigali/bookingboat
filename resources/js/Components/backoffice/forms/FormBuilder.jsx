@@ -25,6 +25,8 @@ export default function FormBuilder({
         submitData.transform ? submitData.transform(data) : data
     );
 
+    console.log(data);
+
     function handleSubmit(e) {
         e.preventDefault();
         submit(submitData.method, submitData.route);

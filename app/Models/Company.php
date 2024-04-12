@@ -41,4 +41,12 @@ class Company extends Model
     {
         return $this->hasMany(Fleet::class);
     }
+
+    /**
+     * Get the tours for the company.
+     */
+    public function tours(): HasMany
+    {
+        return $this->hasMany(Tour::class);
+    }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Backoffice\Agency\CompanyController as AgencyCompanyCon
 use App\Http\Controllers\Backoffice\Agency\FleetController;
 use App\Http\Controllers\Backoffice\Agency\HomeController as AgencyHomeController;
 use App\Http\Controllers\Backoffice\Agency\ProfileController;
+use App\Http\Controllers\Backoffice\Agency\TourController;
 use App\Http\Controllers\Backoffice\HomeController;
 use App\Http\Controllers\Backoffice\LocalizationController;
 use Illuminate\Support\Facades\Route;
@@ -36,12 +37,21 @@ Route::domain(env('VITE_BACKOFFICE_DOMAIN'))->group(function () {
                 Route::get('/', [AgencyHomeController::class, 'index'])->name('dashboard');
 
                 // Fleet
-                Route::get('/fleet', [FleetController::class, 'index'])->name('fleet.index');
-                Route::get('/fleet/create', [FleetController::class, 'create'])->name('fleet.create');
-                Route::post('/fleet', [FleetController::class, 'store'])->name('fleet.store');
-                Route::get('/fleet/{fleet}/edit', [FleetController::class, 'edit'])->name('fleet.edit');
-                Route::post('/fleet/{fleet}', [FleetController::class, 'update'])->name('fleet.update');
-                Route::delete('/fleet/{fleet}', [FleetController::class, 'destroy'])->name('fleet.destroy');
+                Route::get('/fleets', [FleetController::class, 'index'])->name('fleet.index');
+                Route::get('/fleets/create', [FleetController::class, 'create'])->name('fleet.create');
+                Route::post('/fleets', [FleetController::class, 'store'])->name('fleet.store');
+                Route::get('/fleets/{fleet}/edit', [FleetController::class, 'edit'])->name('fleet.edit');
+                Route::post('/fleets/{fleet}', [FleetController::class, 'update'])->name('fleet.update');
+                Route::delete('/fleets/{fleet}', [FleetController::class, 'destroy'])->name('fleet.destroy');
+
+                // Tour
+                Route::get('/tours', [TourController::class, 'index'])->name('tours.index');
+                Route::get('/tours/create', [TourController::class, 'create'])->name('tours.create');
+                Route::post('/tours', [TourController::class, 'store'])->name('tours.store');
+                Route::get('/tours/{tour}/edit', [TourController::class, 'edit'])->name('tours.edit');
+                Route::post('/tours/{tour}', [TourController::class, 'update'])->name('tours.update');
+                Route::delete('/tours/{tour}', [TourController::class, 'destroy'])->name('tours.destroy');
+
             });
         });
 
