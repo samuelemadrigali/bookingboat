@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained();
             $table->string('name');
-            $table->string('image')->nullable();
             $table->string('description')->nullable();
-            $table->string('status')->default('active');
+            $table->string('image')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->smallInteger('capacity')->unsigned();
             $table->timestamps();
         });

@@ -22,11 +22,15 @@ return new class extends Migration
             $table->string('address');
             $table->string('zip');
             $table->string('phone');
-            $table->string('website');
             $table->string('company_name');
             $table->string('vat')->unique();
             $table->string('pec')->nullable();
             $table->string('sdi_code')->nullable();
+            $table->boolean('it')->default(true);
+            $table->boolean('en')->default(false);
+            $table->boolean('de')->default(false);
+            $table->boolean('fr')->default(false);
+            $table->boolean('es')->default(false);
             $table->timestamps();
         });
     }

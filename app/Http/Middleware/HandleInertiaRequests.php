@@ -47,6 +47,8 @@ class HandleInertiaRequests extends Middleware
             'locales' => config('app.available_locales'),
             'translations' => File::exists($file) ? File::json($file) : [],
             'company' => $request->user()?->company,
+            'shop_actived_languages' => $request->user()?->company?->shopActivedLanguages,
+            'shop_main_language' => 'it',
         ];
     }
 }

@@ -27,6 +27,19 @@ class Company extends Model
     protected $guarded = [];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'it' => 'boolean',
+        'en' => 'boolean',
+        'de' => 'boolean',
+        'fr' => 'boolean',
+        'es' => 'boolean',
+    ];
+
+    /**
      * Get the user that owns the company.
      */
     public function user(): BelongsTo
@@ -48,5 +61,19 @@ class Company extends Model
     public function tours(): HasMany
     {
         return $this->hasMany(Tour::class);
+    }
+
+    /**
+     * Get the shop actived languages.
+     */
+    public function getShopActivedLanguagesAttribute(): array
+    {
+        return [
+            'it' => $this->it,
+            'en' => $this->en,
+            'de' => $this->de,
+            'fr' => $this->fr,
+            'es' => $this->es,
+        ];
     }
 }

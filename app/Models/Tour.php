@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Translatable\HasTranslations;
 
 class Tour extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     /**
      * The attributes that are mass assignable.
@@ -17,6 +18,13 @@ class Tour extends Model
      * @var array<int, string>
      */
     protected $guarded = ['fleets'];
+
+    /**
+     * The attributes that are translatable.
+     *
+     * @var array<int, string>
+     */
+    public $translatable = ['name', 'description'];
 
     /**
      * The attributes that should be cast.

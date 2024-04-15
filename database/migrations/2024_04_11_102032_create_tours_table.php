@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->string('name');
+            $table->string('description')->nullable();
             $table->string('image')->nullable();
-            $table->text('description')->nullable();
             $table->json('itinerary')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->integer('max_passenger');
             $table->string('location_from');
             $table->string('location_to');
             $table->time('start_time');
