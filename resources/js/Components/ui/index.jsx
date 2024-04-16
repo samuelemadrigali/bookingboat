@@ -67,6 +67,9 @@ import SweetAlert from "@/Components/ui/sweetalert/SweetAlert";
 import Tabs from "@/Components/ui/Tabs";
 import Tooltip from "@/Components/ui/Tooltip";
 import QuillEditor from "@/Components/ui/QuillEditor";
+import ConfirmDelete from "@/Components/ui/ConfirmDelete";
+import Image from "@/Components/ui/Image";
+import Table from "./Table";
 
 export {
     Accordion,
@@ -137,4 +140,7 @@ export {
     Row,
     Column,
     QuillEditor,
+    ConfirmDelete,
+    Image,
+    Table,
 };

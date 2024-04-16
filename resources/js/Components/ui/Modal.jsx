@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { X } from "react-bootstrap-icons";
+import { XCircleFill } from "react-bootstrap-icons";
 
 export default function Modal({ isOpen, setIsOpen, ...props }) {
     function closeModal() {
@@ -34,18 +34,20 @@ export default function Modal({ isOpen, setIsOpen, ...props }) {
                             leaveTo="opacity-0 scale-95"
                         >
                             <Dialog.Panel className="min-w-500 bg-white rounded shadow-lg border flex flex-col overflow-hidden dark:bg-gray-800 dark:border-gray-700">
-                                <Dialog.Title
-                                    as="h3"
-                                    className="px-6 py-3 text-xl border-b dark:border-gray-700 font-bold"
-                                >
-                                    {props.title ? props.title : ""}
-                                </Dialog.Title>
-                                <button
-                                    onClick={closeModal}
-                                    className="fill-current h-6 w-6 absolute ltr:right-0 rtl:left-0 top-0 m-3 font-3xl font-bold"
-                                >
-                                    <X />
-                                </button>
+                                <div className="relative">
+                                    <Dialog.Title
+                                        as="h3"
+                                        className="px-6 py-3 text-xl border-b dark:border-gray-700 font-bold"
+                                    >
+                                        {props.title ? props.title : ""}
+                                    </Dialog.Title>
+                                    <button
+                                        onClick={closeModal}
+                                        className="fill-current absolute ltr:right-0 rtl:left-0 top-0 m-3 text-2xl"
+                                    >
+                                        <XCircleFill />
+                                    </button>
+                                </div>
                                 {/* modal content */}
                                 <div className="px-6 py-3">
                                     {props.children ? props.children : ""}
