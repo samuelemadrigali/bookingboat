@@ -49,6 +49,10 @@ class HandleInertiaRequests extends Middleware
             'company' => $request->user()?->company,
             'shop_actived_languages' => $request->user()?->company?->shopActivedLanguages,
             'shop_main_language' => 'it',
+            'flash' => [
+                'success' => fn () => $request->session()->get('success'),
+                'error' => fn () => $request->session()->get('error'),
+            ],
         ];
     }
 }

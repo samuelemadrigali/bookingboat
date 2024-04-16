@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Spatie\Translatable\HasTranslations;
 
 class Fleet extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -20,13 +19,6 @@ class Fleet extends Model
     protected $guarded = [];
 
     /**
-     * The attributes that are translatable.
-     *
-     * @var array<int, string>
-     */
-    public $translatable = ['name', 'description'];
-
-    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -34,7 +26,9 @@ class Fleet extends Model
     protected function casts(): array
     {
         return [
-            'status' => 'boolean',
+            'is_active' => 'boolean',
+            'name' => 'json',
+            'description' => 'json',
         ];
     }
 

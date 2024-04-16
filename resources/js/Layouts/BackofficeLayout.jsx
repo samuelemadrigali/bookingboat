@@ -1,5 +1,8 @@
 import { Head } from "@inertiajs/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { usePage } from "@inertiajs/react";
+
 // components
 import Sidebar from "@/Components/sidebar/Sidebar";
 import NavbarAdmin from "@/Components/navbar/NavbarAdmin";
@@ -17,6 +20,17 @@ export default function BackofficeLayout({ title, children }) {
             closeToggle();
         }
     };
+
+    const { flash } = usePage().props;
+
+    useEffect(() => {
+        if (flash.success) {
+            toast.success(flash.success);
+        }
+        if (flash.error) {
+            toast.error(flash.error);
+        }
+    }, [flash]);
 
     return (
         <div
@@ -41,10 +55,11 @@ export default function BackofficeLayout({ title, children }) {
                         {children}
                     </div>
                 </main>
-
                 {/* footer */}
                 <FooterAdmin />
             </div>
+            {/* toast notification */}
+            <Toaster />
         </div>
     );
 }

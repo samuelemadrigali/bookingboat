@@ -68,12 +68,14 @@ class Company extends Model
      */
     public function getShopActivedLanguagesAttribute(): array
     {
-        return [
+        $langs = [
             'it' => $this->it,
             'en' => $this->en,
             'de' => $this->de,
             'fr' => $this->fr,
             'es' => $this->es,
         ];
+
+        return array_keys(array_filter($langs, fn ($lang) => $lang));
     }
 }

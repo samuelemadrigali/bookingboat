@@ -9,10 +9,9 @@ export default function FleetTableActions({ id }) {
     const [isOpenModal, setIsOpenModal] = useState(false);
 
     function handleOnDelete() {
-        alert("Delete");
-        // destroy(
-        //     route("agency.fleet.destroy", { company: company.slug, fleet: id })
-        // );
+        destroy(
+            route("agency.fleet.destroy", { company: company.slug, fleet: id })
+        );
     }
 
     return (

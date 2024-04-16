@@ -47,6 +47,9 @@ export default forwardRef(function InputLabel(props, ref) {
                 disabled={props.disabled}
                 readOnly={props.readOnly}
                 required={props.required}
+                min={props.min}
+                max={props.max}
+                data-lang={props.lang}
             />
         </div>
     );

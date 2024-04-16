@@ -22,10 +22,10 @@ class FleetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name.*' => ['required', 'string', 'max:255'],
             'image' => ['nullable', 'image'],
-            'description' => ['nullable', 'string'],
-            'status' => ['required', 'boolean'],
+            'description.*' => ['nullable', 'string'],
+            'is_active' => ['required', 'boolean'],
             'capacity' => ['required', 'integer', 'min:1'],
         ];
     }

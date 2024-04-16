@@ -18,7 +18,7 @@ export default function Index({ company }) {
                         })}
                     >
                         <Button className="mb-4 block sm:inline-block w-full sm:w-auto">
-                            {t("fleet.create")}
+                            {t("fleets.create")}
                             <PlusLg className="inline-block ltr:ml-1 rtl:mr-1 bi bi-plus-lg" />
                         </Button>
                     </Link>

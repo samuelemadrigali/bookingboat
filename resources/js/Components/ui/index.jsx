@@ -70,6 +70,7 @@ import QuillEditor from "@/Components/ui/QuillEditor";
 import ConfirmDelete from "@/Components/ui/ConfirmDelete";
 import Image from "@/Components/ui/Image";
 import Table from "./Table";
+import Flag from "./Flag";
 
 export {
     Accordion,
@@ -143,4 +144,5 @@ export {
     ConfirmDelete,
     Image,
     Table,
+    Flag,
 };

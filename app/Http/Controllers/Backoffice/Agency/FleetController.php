@@ -18,7 +18,7 @@ class FleetController extends Controller
     public function index(Company $company): Response
     {
         return Inertia::render('Backoffice/Agency/Fleet/Index', [
-            'fleets' => $company->fleets()->paginate(20),
+            'fleets' => $company->fleets()->paginate(10),
         ]);
     }
 
@@ -44,7 +44,7 @@ class FleetController extends Controller
 
         Fleet::create($fleetData);
 
-        return redirect()->route('agency.fleet.index', $company->slug);
+        return redirect()->route('agency.fleet.index', $company->slug)->with('success', __('flash.create.success'));
     }
 
     /**
@@ -70,7 +70,7 @@ class FleetController extends Controller
 
         $fleet->update($fleetData);
 
-        return redirect()->route('agency.fleet.index', $company->slug);
+        return redirect()->route('agency.fleet.index', $company->slug)->with('success', __('flash.update.success'));
     }
 
     /**
@@ -80,6 +80,6 @@ class FleetController extends Controller
     {
         $fleet->delete();
 
-        return redirect()->route('agency.fleet.index', $company->slug);
+        return redirect()->route('agency.fleet.index', $company->slug)->with('success', __('flash.delete.success'));
     }
 }

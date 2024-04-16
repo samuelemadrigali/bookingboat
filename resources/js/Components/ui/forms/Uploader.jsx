@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDropzone } from "react-dropzone";
+import useLocalization from "@/hooks/useLocalization";
 
 const Uploader = ({
     onChange,
@@ -7,7 +8,9 @@ const Uploader = ({
     uploadedImage,
     textUpload,
     variant,
+    label,
 }) => {
+    const { t } = useLocalization();
     const addClass = className || "";
     const [previewImages, setPreviewImages] = useState(
         uploadedImage ? [{ file: null, preview: uploadedImage }] : []
@@ -45,6 +48,7 @@ const Uploader = ({
 
     return (
         <div className={`file-upload ${addClass}`}>
+            <label className="inline-block mb-2">{label}</label>
             {previewImages.length > 0 ? (
                 <div
                     className={`flex flex-wrap multiple-dropzone ${
@@ -114,15 +118,13 @@ const Uploader = ({
                             className="py-1.5 px-3 inline-block text-center rounded leading-normal text-gray-800 bg-gray-100 border border-gray-100 hover:text-gray-900 hover:bg-gray-200 hover:ring-0 hover:border-gray-200 focus:bg-gray-200 focus:border-gray-200 focus:outline-none focus:ring-0 mr-2 dark:bg-gray-300"
                         />
                         <p className="text-body-lg">
-                            {textUpload
-                                ? textUpload
-                                : "Drag & drop images here"}
+                            {textUpload ? textUpload : t("uploader.drop")}
                         </p>
                         <button
                             type="button"
                             className="py-1.5 px-3 inline-block text-center rounded leading-normal text-gray-800 bg-gray-100 border border-gray-100 hover:text-gray-900 hover:bg-gray-200 hover:ring-0 hover:border-gray-200 focus:bg-gray-200 focus:border-gray-200 focus:outline-none focus:ring-0 mr-2 dark:bg-gray-300"
                         >
-                            Browse file
+                            {t("uploader.browse")}
                         </button>
                     </div>
                 </div>

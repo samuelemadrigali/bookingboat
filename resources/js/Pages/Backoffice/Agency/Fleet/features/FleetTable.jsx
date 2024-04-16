@@ -1,28 +1,28 @@
 import useLocalization from "@/hooks/useLocalization";
 import { usePage } from "@inertiajs/react";
-import { Table, Badge, Image } from "@/Components/ui";
+import { Table, Badge, Image, Pagination } from "@/Components/ui";
 import FleetTableActions from "./FleetTableActions";
 
 export default function FleetTable() {
     const { t } = useLocalization();
     const { fleets } = usePage().props;
-
+    console.log(fleets);
     const columns = [
         {
-            label: t("fleet.fields.image"),
+            label: t("fleets.fields.image"),
             key: "image",
         },
         {
-            label: t("fleet.fields.name"),
+            label: t("fleets.fields.name"),
             key: "name",
         },
         {
-            label: t("fleet.fields.capacity"),
+            label: t("fleets.fields.capacity"),
             key: "capacity",
         },
         {
-            label: t("fleet.fields.status"),
-            key: "status",
+            label: t("fleets.fields.is_active"),
+            key: "is_active",
         },
         {
             label: <div className="text-end">{t("actions")}</div>,
@@ -32,8 +32,8 @@ export default function FleetTable() {
 
     const data = fleets.data.map((fleet) => ({
         ...fleet,
-        name: fleet.name.it,
-        description: fleet.description.it,
+        name: fleet.name?.it,
+        description: fleet.description?.it,
         image: (
             <Image
                 className="h-28 object-cover rounded-md"
@@ -41,13 +41,18 @@ export default function FleetTable() {
                 alt={fleet.name.it}
             />
         ),
-        status: (
-            <Badge color={fleet.status ? "success" : "danger"}>
-                {fleet.status ? t("active") : t("inactive")}
+        is_active: (
+            <Badge color={fleet.is_active ? "success" : "danger"}>
+                {fleet.is_active ? t("active") : t("inactive")}
             </Badge>
         ),
         actions: <FleetTableActions id={fleet.id} />,
     }));
 
-    return <Table columns={columns} data={data} />;
+    return (
+        <>
+            <Table columns={columns} data={data} />
+            {fleets.last_page > 1 && <Pagination links={fleets.links} />}
+        </>
+    );
 }
