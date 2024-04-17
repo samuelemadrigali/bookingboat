@@ -17,7 +17,7 @@ class TourController extends Controller
      */
     public function index(Company $company): Response
     {
-        return Inertia::render('Backoffice/Agency/Tour/Index', [
+        return Inertia::render('Backoffice/Agency/Tours/Index', [
             'tours' => $company->tours()->paginate(20),
         ]);
     }
@@ -27,7 +27,7 @@ class TourController extends Controller
      */
     public function create(Company $company): Response
     {
-        return Inertia::render('Backoffice/Agency/Tour/Create', [
+        return Inertia::render('Backoffice/Agency/Tours/Create', [
             'company' => $company,
             'fleets' => $company->fleets,
         ]);
@@ -49,7 +49,7 @@ class TourController extends Controller
 
         $tour->fleets()->attach($request->fleets);
 
-        return redirect()->route('agency.tours.index', $company);
+        return redirect()->route('agency.tours.index', $company)->with('success', __('flash.create.success'));
     }
 
     /**
@@ -57,8 +57,8 @@ class TourController extends Controller
      */
     public function edit(Company $company, Tour $tour): Response
     {
-        return Inertia::render('Backoffice/Agency/Tour/Edit', [
-            'tour' => $tour,
+        return Inertia::render('Backoffice/Agency/Tours/Edit', [
+            'tour' => $tour->load('fleets'),
             'fleets' => $company->fleets,
         ]);
     }
@@ -78,7 +78,7 @@ class TourController extends Controller
 
         $tour->fleets()->sync($request->fleets);
 
-        return redirect()->route('agency.tours.index', $company);
+        return redirect()->route('agency.tours.index', $company)->with('success', __('flash.update.success'));
     }
 
     /**
@@ -88,6 +88,6 @@ class TourController extends Controller
     {
         $tour->delete();
 
-        return redirect()->route('agency.tour.index', $company);
+        return redirect()->route('agency.tour.index', $company)->with('success', __('flash.delete.success'));
     }
 }

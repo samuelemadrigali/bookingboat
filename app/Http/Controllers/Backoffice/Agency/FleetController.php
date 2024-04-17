@@ -17,7 +17,7 @@ class FleetController extends Controller
      */
     public function index(Company $company): Response
     {
-        return Inertia::render('Backoffice/Agency/Fleet/Index', [
+        return Inertia::render('Backoffice/Agency/Fleets/Index', [
             'fleets' => $company->fleets()->paginate(10),
         ]);
     }
@@ -27,7 +27,7 @@ class FleetController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Backoffice/Agency/Fleet/Create');
+        return Inertia::render('Backoffice/Agency/Fleets/Create');
     }
 
     /**
@@ -44,7 +44,7 @@ class FleetController extends Controller
 
         Fleet::create($fleetData);
 
-        return redirect()->route('agency.fleet.index', $company->slug)->with('success', __('flash.create.success'));
+        return redirect()->route('agency.fleets.index', $company->slug)->with('success', __('flash.create.success'));
     }
 
     /**
@@ -52,7 +52,7 @@ class FleetController extends Controller
      */
     public function edit(Company $company, Fleet $fleet): Response
     {
-        return Inertia::render('Backoffice/Agency/Fleet/Edit', [
+        return Inertia::render('Backoffice/Agency/Fleets/Edit', [
             'fleet' => $fleet,
         ]);
     }
@@ -70,7 +70,7 @@ class FleetController extends Controller
 
         $fleet->update($fleetData);
 
-        return redirect()->route('agency.fleet.index', $company->slug)->with('success', __('flash.update.success'));
+        return redirect()->route('agency.fleets.index', $company->slug)->with('success', __('flash.update.success'));
     }
 
     /**
@@ -80,6 +80,6 @@ class FleetController extends Controller
     {
         $fleet->delete();
 
-        return redirect()->route('agency.fleet.index', $company->slug)->with('success', __('flash.delete.success'));
+        return redirect()->route('agency.fleets.index', $company->slug)->with('success', __('flash.delete.success'));
     }
 }

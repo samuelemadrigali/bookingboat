@@ -17,7 +17,7 @@ export default function Textarea(props) {
     const addClass = props.className ? `${props.className} ` : "";
 
     return (
-        <div className="mb-4">
+        <div>
             <label htmlFor={props.id} className="inline-block mb-2">
                 {props.label}
             </label>

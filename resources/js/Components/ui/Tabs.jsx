@@ -1,4 +1,5 @@
 import { Tab } from "@headlessui/react";
+import React from "react";
 
 export default function Tabs(props) {
     // props ( data, model, className )
@@ -31,10 +32,9 @@ export default function Tabs(props) {
                             </Tab>
                         ))}
                     </Tab.List>
-
-                    <Tab.Panels className="py-1.5 px-3">
+                    <Tab.Panels className="py-1.5 ">
                         {tabitem.map((item, index) => (
-                            <Tab.Panel key={index} className="px-3">
+                            <Tab.Panel key={index} className="">
                                 {item.description}
                             </Tab.Panel>
                         ))}
@@ -63,14 +63,20 @@ export default function Tabs(props) {
                             </Tab>
                         ))}
                     </Tab.List>
-
-                    <Tab.Panels className="py-1.5 px-3">
+                    <Tab.Panels className="py-1.5 ">
                         {tabitem.map((item, index) => (
-                            <Tab.Panel key={index} className="py-3">
+                            <Tab.Panel key={index} className="pt-3">
                                 {item.description}
                             </Tab.Panel>
                         ))}
                     </Tab.Panels>
+                    <div>
+                        {tabitem.map((item, index) => (
+                            <React.Fragment key={index}>
+                                {item.footer}
+                            </React.Fragment>
+                        ))}
+                    </div>
                 </Tab.Group>
             )}
         </>

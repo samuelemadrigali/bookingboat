@@ -15,7 +15,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Backoffice/Agency/Company/Create');
+        return Inertia::render('Backoffice/Agency/Companies/Create');
     }
 
     /**

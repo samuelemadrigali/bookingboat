@@ -13,7 +13,7 @@ export default function Index({ company }) {
             <Card className="relative mb-6">
                 <div className="mb-3">
                     <Link
-                        href={route("agency.fleet.create", {
+                        href={route("agency.fleets.create", {
                             company: company.slug,
                         })}
                     >

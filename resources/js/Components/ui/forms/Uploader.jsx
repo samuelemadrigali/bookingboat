@@ -96,7 +96,7 @@ const Uploader = ({
             ) : (
                 <div
                     {...getRootProps()}
-                    className="dropzone multiple-dropzone !border !border-gray-200 dark:!border-gray-700 !rounded-lg"
+                    className="dropzone multiple-dropzone !border !border-gray-300 dark:!border-gray-700 !rounded-lg"
                 >
                     <div className="dropzone pre-upload flex flex-col gap-3 items-center cursor-pointer py-6">
                         <svg

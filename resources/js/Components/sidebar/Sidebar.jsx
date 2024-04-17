@@ -19,7 +19,7 @@ export default function Sidebar({ closeMobile, ...props }) {
         {
             id: 2,
             title: t("fleet"),
-            url: route("agency.fleet.index", company.slug),
+            url: route("agency.fleets.index", company.slug),
             icon: <PSquare />,
         },
         {

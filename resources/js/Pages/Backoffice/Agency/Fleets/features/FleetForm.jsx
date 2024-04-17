@@ -35,11 +35,11 @@ export default function FleetForm() {
     });
 
     const action = fleet
-        ? route("agency.fleet.update", {
+        ? route("agency.fleets.update", {
               company: company.slug,
               fleet: fleet.id,
           })
-        : route("agency.fleet.store", { company: company.slug });
+        : route("agency.fleets.store", { company: company.slug });
 
     transform((data) => {
         if (data.image !== null && data.image instanceof File === false) {
@@ -79,7 +79,6 @@ export default function FleetForm() {
                         lang={lang}
                         required
                     />
-                    <InputError message={errors[`name.${lang}`]} />
                 </Column>
                 <Column>
                     <Textarea
@@ -90,22 +89,28 @@ export default function FleetForm() {
                         label={t("fleets.fields.description")}
                         lang={lang}
                     />
-                    <InputError message={errors[`description.${lang}`]} />
                 </Column>
             </Row>
+        ),
+        footer: (
+            <>
+                <InputError message={errors[`name.${lang}`]} />
+                <InputError message={errors[`description.${lang}`]} />
+            </>
         ),
     }));
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4" noValidate>
             <Row>
-                <Column spansSm={6}>
+                <Column>
                     <Tabs data={tabs} />
                 </Column>
                 <Column spansSm={6}>
                     <Uploader
                         id="image"
                         name="image"
+                        variant="single"
                         value={data.image}
                         uploadedImage={data.image}
                         onChange={(files) => setData("image", files[0] || null)}
@@ -114,27 +119,33 @@ export default function FleetForm() {
                     <InputError message={errors.image} />
                 </Column>
                 <Column spansSm={6}>
-                    <InputLabel
-                        id="capacity"
-                        name="capacity"
-                        type="number"
-                        min={1}
-                        value={data.capacity}
-                        onChange={handleOnChange}
-                        label={t("fleets.fields.capacity")}
-                        required
-                    />
-                    <InputError message={errors.capacity} />
-                </Column>
-                <Column spansSm={6}>
-                    <Switch
-                        id="is_active"
-                        name="is_active"
-                        checked={data.is_active}
-                        onChange={() => setData("is_active", !data.is_active)}
-                        label={t("fleets.fields.is_active")}
-                    />
-                    <InputError message={errors.is_active} />
+                    <Row>
+                        <Column>
+                            <InputLabel
+                                id="capacity"
+                                name="capacity"
+                                type="number"
+                                min={1}
+                                value={data.capacity}
+                                onChange={handleOnChange}
+                                label={t("fleets.fields.capacity")}
+                                required
+                            />
+                            <InputError message={errors.capacity} />
+                        </Column>
+                        <Column>
+                            <Switch
+                                id="is_active"
+                                name="is_active"
+                                checked={data.is_active}
+                                onChange={() =>
+                                    setData("is_active", !data.is_active)
+                                }
+                                label={t("fleets.fields.is_active")}
+                            />
+                            <InputError message={errors.is_active} />
+                        </Column>
+                    </Row>
                 </Column>
             </Row>
             <Button type="submit">{t("form.save")}</Button>

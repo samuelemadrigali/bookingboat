@@ -44,6 +44,7 @@ import Range from "@/Components/ui/forms/Range";
 import Select from "@/Components/ui/forms/Select";
 import Switch from "@/Components/ui/forms/Switch";
 import Textarea from "@/Components/ui/forms/Textarea";
+import DataSelect from "@/Components/ui/forms/DataSelect";
 import Row from "@/Components/ui/Row";
 import Column from "@/Components/ui/Column";
 import ListGroup from "@/Components/ui/ListGroup";
@@ -145,4 +146,5 @@ export {
     Image,
     Table,
     Flag,
+    DataSelect,
 };

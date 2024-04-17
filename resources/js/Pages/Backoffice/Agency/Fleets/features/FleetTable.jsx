@@ -6,7 +6,7 @@ import FleetTableActions from "./FleetTableActions";
 export default function FleetTable() {
     const { t } = useLocalization();
     const { fleets } = usePage().props;
-    console.log(fleets);
+
     const columns = [
         {
             label: t("fleets.fields.image"),

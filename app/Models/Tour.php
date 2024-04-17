@@ -25,7 +25,7 @@ class Tour extends Model
      */
     protected $casts = [
         'itinerary' => 'array',
-        'status' => 'boolean',
+        'is_active' => 'boolean',
         'name' => 'json',
         'description' => 'json',
         'start_time' => 'datetime:H:i',

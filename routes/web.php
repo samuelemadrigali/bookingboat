@@ -37,12 +37,12 @@ Route::domain(env('VITE_BACKOFFICE_DOMAIN'))->group(function () {
                 Route::get('/', [AgencyHomeController::class, 'index'])->name('dashboard');
 
                 // Fleet
-                Route::get('/fleets', [FleetController::class, 'index'])->name('fleet.index');
-                Route::get('/fleets/create', [FleetController::class, 'create'])->name('fleet.create');
-                Route::post('/fleets', [FleetController::class, 'store'])->name('fleet.store');
-                Route::get('/fleets/{fleet}/edit', [FleetController::class, 'edit'])->name('fleet.edit');
-                Route::post('/fleets/{fleet}', [FleetController::class, 'update'])->name('fleet.update');
-                Route::delete('/fleets/{fleet}', [FleetController::class, 'destroy'])->name('fleet.destroy');
+                Route::get('/fleets', [FleetController::class, 'index'])->name('fleets.index');
+                Route::get('/fleets/create', [FleetController::class, 'create'])->name('fleets.create');
+                Route::post('/fleets', [FleetController::class, 'store'])->name('fleets.store');
+                Route::get('/fleets/{fleet}/edit', [FleetController::class, 'edit'])->name('fleets.edit');
+                Route::post('/fleets/{fleet}', [FleetController::class, 'update'])->name('fleets.update');
+                Route::delete('/fleets/{fleet}', [FleetController::class, 'destroy'])->name('fleets.destroy');
 
                 // Tour
                 Route::get('/tours', [TourController::class, 'index'])->name('tours.index');

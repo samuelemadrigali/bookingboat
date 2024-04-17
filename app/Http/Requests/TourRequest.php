@@ -22,12 +22,11 @@ class TourRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
+            'name.*' => ['required', 'string', 'max:255'],
             'image' => ['nullable', 'image'],
-            'description' => ['nullable', 'string'],
+            'description.*' => ['nullable', 'string'],
             'itinerary' => ['nullable', 'array'],
             'is_active' => ['required', 'boolean'],
-            'max_passenger' => ['required', 'integer'],
             'location_from' => ['required', 'string'],
             'location_to' => ['required', 'string'],
             'start_time' => ['required', 'date_format:H:i', 'before:end_time'],
