@@ -5,6 +5,7 @@ use App\Http\Controllers\Backoffice\Agency\CompanyController as AgencyCompanyCon
 use App\Http\Controllers\Backoffice\Agency\FleetController;
 use App\Http\Controllers\Backoffice\Agency\HomeController as AgencyHomeController;
 use App\Http\Controllers\Backoffice\Agency\ProfileController;
+use App\Http\Controllers\Backoffice\Agency\RateCategoryController;
 use App\Http\Controllers\Backoffice\Agency\TourController;
 use App\Http\Controllers\Backoffice\HomeController;
 use App\Http\Controllers\Backoffice\LocalizationController;
@@ -51,6 +52,14 @@ Route::domain(env('VITE_BACKOFFICE_DOMAIN'))->group(function () {
                 Route::get('/tours/{tour}/edit', [TourController::class, 'edit'])->name('tours.edit');
                 Route::post('/tours/{tour}', [TourController::class, 'update'])->name('tours.update');
                 Route::delete('/tours/{tour}', [TourController::class, 'destroy'])->name('tours.destroy');
+
+                // Rate Category
+                Route::get('/rate-categories', [RateCategoryController::class, 'index'])->name('rate-categories.index');
+                Route::get('/rate-categories/create', [RateCategoryController::class, 'create'])->name('rate-categories.create');
+                Route::post('/rate-categories', [RateCategoryController::class, 'store'])->name('rate-categories.store');
+                Route::get('/rate-categories/{rateCategory}/edit', [RateCategoryController::class, 'edit'])->name('rate-categories.edit');
+                Route::post('/rate-categories/{rateCategory}', [RateCategoryController::class, 'update'])->name('rate-categories.update');
+                Route::delete('/rate-categories/{rateCategory}', [RateCategoryController::class, 'destroy'])->name('rate-categories.destroy');
 
             });
         });

@@ -1,4 +1,4 @@
-import { HouseDoor, PSquare, Book } from "react-bootstrap-icons";
+import { HouseDoor, PSquare, Book, Coin } from "react-bootstrap-icons";
 import { SubmenuAccordion } from "@/Components/ui";
 import Logo from "@/Components/navbar/Logo";
 import useLocalization from "@/hooks/useLocalization";
@@ -27,6 +27,19 @@ export default function Sidebar({ closeMobile, ...props }) {
             title: t("tour"),
             url: route("agency.tours.index", company.slug),
             icon: <Book />,
+        },
+        {
+            id: 4,
+            title: t("rates"),
+            url: "",
+            icon: <Coin />,
+            submenu: [
+                {
+                    id: 41,
+                    title: t("categories"),
+                    url: route("agency.rate-categories.index", company.slug),
+                },
+            ],
         },
     ];
     const models = {

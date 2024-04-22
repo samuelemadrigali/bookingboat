@@ -64,6 +64,14 @@ class Company extends Model
     }
 
     /**
+     * Get the rate categories for the company.
+     */
+    public function rateCategories(): HasMany
+    {
+        return $this->hasMany(RateCategory::class);
+    }
+
+    /**
      * Get the shop actived languages.
      */
     public function getShopActivedLanguagesAttribute(): array
